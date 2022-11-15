@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 
 //adding a comment to make sure git is working.
-console.log("lets get started!")
+//console.log("lets get started!")
 
 function App() {
   return (
