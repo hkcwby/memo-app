@@ -1,6 +1,7 @@
 import './App.css';
 import LeftPanel from "./components/structureComponents/LeftPanel.js"
 import RightPanel from "./components/structureComponents/RightPanel.js"
+import {data} from "./dataDummy.js";
 
 
 
