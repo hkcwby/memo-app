@@ -1,4 +1,6 @@
 import './App.css';
+import LeftPanel from "./components/structureComponents/LeftPanel.js"
+import RightPanel from "./components/structureComponents/RightPanel.js"
 
 
 
@@ -8,8 +10,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <h2>Simple Memo Task App</h2>
+      <h2>Simple Memo Task App Mockup (no backend)</h2>
       </header>
+      <div id = "wrapper">
+        <LeftPanel></LeftPanel>
+        <RightPanel></RightPanel>
+      </div>
     </div>
   );
 }
