@@ -1,8 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-//adding a comment to make sure git is working.
-//console.log("lets get started!")
+
 
 function App() {
   return (
@@ -11,7 +10,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
-          update test
+          
         </p>
         <a
           className="App-link"
