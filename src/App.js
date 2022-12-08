@@ -17,6 +17,17 @@ function App() {
   //a tracking variable to keep track of the current memo based on its unique id
   const [tracking,setTracking] = useState(counter);
 
+//a function to display relevant memo information(right panel) when memo item clicked(leftpanel)
+  function handleMemoClick(id){
+    setTracking(id);
+    const item = memos.filter(memo=>memo.id==id);
+    setTracking(item[0].id);
+    setTitle(item[0].title);
+    setDetail(item[0].content);
+    document.getElementById("formDetails").value=detail;
+    
+  }
+
   
   return (
     <div className="App">
@@ -24,8 +35,8 @@ function App() {
       <h2>Simple Memo Task App Mockup (no backend)</h2>
       </header>
       <div id = "wrapper">
-        <LeftPanel data={memos} ></LeftPanel>
-        <RightPanel></RightPanel>
+        <LeftPanel data={memos} onMemoClick={handleMemoClick}></LeftPanel>
+        <RightPanel title={title} detail={detail}></RightPanel>
       </div>
     </div>
   );

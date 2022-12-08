@@ -6,7 +6,7 @@ export default function LeftPanel(props){
     return (<>
         <div id="left-page" className="split">
             <h2>Memos</h2>  
-            <MemoList data={props.data} ></MemoList>
+            <MemoList data={props.data} onMemoClick={props.onMemoClick}></MemoList>
             
         </div>        
     </>);
