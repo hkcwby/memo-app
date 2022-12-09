@@ -31,7 +31,6 @@ function App() {
 //a function to remove a memo from storage
   function handleDeleteClick(id) {
     setMemos(memos.filter(memo => memo.id !== id));
-    console.log("hello delete");
 }
 
   
