@@ -16,7 +16,8 @@ function App() {
   const [counter,setCounter] = useState(data.length+1);
   //a tracking variable to keep track of the current memo based on its unique id
   const [tracking,setTracking] = useState(counter);
-  
+  //set a validation variable to catch errors and provide user feedback
+  const [validation,setValidation] = useState("");
 
 //a function to display relevant memo information(right panel) when memo item clicked(leftpanel)
   function handleMemoClick(id){
@@ -46,7 +47,24 @@ function handleDetailChange(e){
 
 function handleMemoSubmit(event){
   event.preventDefault();
-  
+  if(!title){
+    setValidation("Please enter a Title");
+    
+    return;
+  }
+  if(!detail){
+    setValidation("Please enter some details");
+    
+    return;
+
+  }
+
+  if(memos.length>=10){
+    setValidation("limit of 10 memos for demonstrative purposes");
+    
+    return;
+
+  }
   let modified = false;
   memos.forEach(memo=>{
     if(memo.id==tracking){
@@ -61,7 +79,7 @@ function handleMemoSubmit(event){
   }
   setTitle("");
   setDetail("");
-  
+  setValidation("");
 }
 
   
@@ -72,7 +90,7 @@ function handleMemoSubmit(event){
       </header>
       <div id = "wrapper">
         <LeftPanel data={memos} onMemoClick={handleMemoClick} onDeleteClick={handleDeleteClick} ></LeftPanel>
-        <RightPanel title={title} detail={detail} onSubmit={handleMemoSubmit} onChangeTitle={e=>handleTitleChange(e)} onChangeDetail={e=>handleDetailChange(e)}></RightPanel>
+        <RightPanel title={title} detail={detail} onSubmit={handleMemoSubmit} onChangeTitle={e=>handleTitleChange(e)} onChangeDetail={e=>handleDetailChange(e)} validation={validation}></RightPanel>
       </div>
     </div>
   );
