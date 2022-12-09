@@ -24,5 +24,28 @@
 .split{
   display:flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
+li{
+  z-index: 1;
+  list-style: none;
+}
+
+li:not(:last-child) {
+  margin-bottom: 5vh;
+}
+
+li:hover{
+  background-color: darkgray;
+}
+
+#validation{
+  color: red;
+  font-weight: bold;
+}
+
+.btn-delete{
+  margin-left: 5vh;
+  float:right;
+}

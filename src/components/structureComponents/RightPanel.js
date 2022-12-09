@@ -8,7 +8,10 @@ export default function RightPanel(props){
 
     return (<>
         <div id="right-page" className="split">
-            <h2>Memo Detail</h2>
+            <div>
+                <h2>Memo Detail</h2>
+            </div>
+            <div>
             <form id="memo-form" onSubmit={props.onSubmit}>
                 <Input className="" size="50" name="Title" id="formTitle" placeholder="Enter Title" value={props.title} onChange={props.onChangeTitle}></Input>
                 <br></br>
@@ -16,7 +19,7 @@ export default function RightPanel(props){
                 <div id="validation" className="right">{props.validation}</div>
                 <Button id="save"  className="" type="submit">Save</Button>
             </form>
-
+            </div>
         </div>
     </>);    
 
