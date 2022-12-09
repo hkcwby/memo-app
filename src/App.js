@@ -2,7 +2,7 @@ import './App.css';
 import LeftPanel from "./components/structureComponents/LeftPanel.js"
 import RightPanel from "./components/structureComponents/RightPanel.js"
 import {data} from "./dataDummy.js";
-import { useState } from "react";
+import {useState} from "react";
 
 
 
@@ -28,6 +28,12 @@ function App() {
     
   }
 
+//a function to remove a memo from storage
+  function handleDeleteClick(id) {
+    setMemos(memos.filter(memo => memo.id !== id));
+    console.log("hello delete");
+}
+
   
   return (
     <div className="App">
@@ -35,7 +41,7 @@ function App() {
       <h2>Simple Memo Task App Mockup (no backend)</h2>
       </header>
       <div id = "wrapper">
-        <LeftPanel data={memos} onMemoClick={handleMemoClick}></LeftPanel>
+        <LeftPanel data={memos} onMemoClick={handleMemoClick} onDeleteClick={handleDeleteClick}></LeftPanel>
         <RightPanel title={title} detail={detail}></RightPanel>
       </div>
     </div>
