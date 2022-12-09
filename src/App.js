@@ -82,6 +82,15 @@ function handleMemoSubmit(event){
   setValidation("");
 }
 
+//a function to generate a clean memo for submission with a rudimentary unique id system
+function handleComposeClick(){
+  setTracking(counter);
+  setCounter(tracking+1);
+  setTitle("");
+  setDetail("");
+  document.getElementById("formDetails").value=detail;
+}
+
   
   return (
     <div className="App">
@@ -89,7 +98,7 @@ function handleMemoSubmit(event){
       <h2>Simple Memo Task App Mockup (no backend)</h2>
       </header>
       <div id = "wrapper">
-        <LeftPanel data={memos} onMemoClick={handleMemoClick} onDeleteClick={handleDeleteClick} ></LeftPanel>
+        <LeftPanel data={memos} onMemoClick={handleMemoClick} onDeleteClick={handleDeleteClick} onComposeClick={handleComposeClick}></LeftPanel>
         <RightPanel title={title} detail={detail} onSubmit={handleMemoSubmit} onChangeTitle={e=>handleTitleChange(e)} onChangeDetail={e=>handleDetailChange(e)} validation={validation}></RightPanel>
       </div>
     </div>
