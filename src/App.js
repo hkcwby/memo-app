@@ -36,14 +36,10 @@ function App() {
 //update the stored title of the memo as it is typed
 function handleTitleChange(e){
   setTitle(e.target.value);
-  console.log(title);
-  
 }
 //update the stored detail of the memo as it is typed
 function handleDetailChange(e){
   setDetail(e.target.value);
-  console.log(detail);
-
 }
   
   return (
