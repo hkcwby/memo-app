@@ -33,6 +33,18 @@ function App() {
     setMemos(memos.filter(memo => memo.id !== id));
 }
 
+//update the stored title of the memo as it is typed
+function handleTitleChange(e){
+  setTitle(e.target.value);
+  console.log(title);
+  
+}
+//update the stored detail of the memo as it is typed
+function handleDetailChange(e){
+  setDetail(e.target.value);
+  console.log(detail);
+
+}
   
   return (
     <div className="App">
@@ -41,7 +53,7 @@ function App() {
       </header>
       <div id = "wrapper">
         <LeftPanel data={memos} onMemoClick={handleMemoClick} onDeleteClick={handleDeleteClick}></LeftPanel>
-        <RightPanel title={title} detail={detail}></RightPanel>
+        <RightPanel title={title} detail={detail} onChangeTitle={e=>handleTitleChange(e)} onChangeDetail={e=>handleDetailChange(e)}></RightPanel>
       </div>
     </div>
   );
