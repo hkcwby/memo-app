@@ -16,6 +16,7 @@ function App() {
   const [counter,setCounter] = useState(data.length+1);
   //a tracking variable to keep track of the current memo based on its unique id
   const [tracking,setTracking] = useState(counter);
+  
 
 //a function to display relevant memo information(right panel) when memo item clicked(leftpanel)
   function handleMemoClick(id){
@@ -41,6 +42,28 @@ function handleTitleChange(e){
 function handleDetailChange(e){
   setDetail(e.target.value);
 }
+
+
+function handleMemoSubmit(event){
+  event.preventDefault();
+  
+  let modified = false;
+  memos.forEach(memo=>{
+    if(memo.id==tracking){
+      memo.content=detail;
+      memo.title=title;
+      modified=true;
+    }
+  })
+  if(!modified){
+    setMemos([...memos,{id:counter,title:title,content:detail}]);
+    setCounter(counter+1);
+  }
+  setTitle("");
+  setDetail("");
+  
+}
+
   
   return (
     <div className="App">
@@ -48,8 +71,8 @@ function handleDetailChange(e){
       <h2>Simple Memo Task App Mockup (no backend)</h2>
       </header>
       <div id = "wrapper">
-        <LeftPanel data={memos} onMemoClick={handleMemoClick} onDeleteClick={handleDeleteClick}></LeftPanel>
-        <RightPanel title={title} detail={detail} onChangeTitle={e=>handleTitleChange(e)} onChangeDetail={e=>handleDetailChange(e)}></RightPanel>
+        <LeftPanel data={memos} onMemoClick={handleMemoClick} onDeleteClick={handleDeleteClick} ></LeftPanel>
+        <RightPanel title={title} detail={detail} onSubmit={handleMemoSubmit} onChangeTitle={e=>handleTitleChange(e)} onChangeDetail={e=>handleDetailChange(e)}></RightPanel>
       </div>
     </div>
   );
