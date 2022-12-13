@@ -49,3 +49,11 @@ li:not(:last-child) {
   margin-left: 5vh;
   float:right;
 }
+
+
+
+@media (max-width: 60rem) {
+  #wrapper {
+      flex-direction: column;
+  }
+}
