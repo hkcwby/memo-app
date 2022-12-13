@@ -56,4 +56,26 @@ li:not(:last-child) {
   #wrapper {
       flex-direction: column;
   }
+  .left{
+    width:30vw;
+    flex-wrap: wrap;
+    
+  }
+  #left-page{
+    align-items: center;
+  }
+
+  .ui-textfield{
+    width: 60vw;
+    height:30vh;
+  }
+
+  .ui-input{
+    width:40vw;
+   
+  }
+  li:not(:last-child) {
+    margin-bottom: 2vh;
+  }
+  
 }
