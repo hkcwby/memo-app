@@ -2,30 +2,55 @@ import './App.css';
 import LeftPanel from "./components/structureComponents/LeftPanel.js"
 import RightPanel from "./components/structureComponents/RightPanel.js"
 import {data} from "./dataDummy.js";
-import {useState} from "react";
+import {useState, useEffect} from "react";
+import firebase from "./firebase.js";
 
 
 
 function App() {
+  const ref = firebase.firestore().collection("memos");
   //the memo data as stored in the database, in this case we are just using a dummy file to represent our database
-  const [memos,setMemos] = useState(data);
+  const [memos,setMemos] = useState([]);
   //useState variable for both the title and detail of our present memo shown on the right panel
   const [title,setTitle] = useState("");
   const [detail,setDetail] = useState("");
   //a counter for creating new unique memo id
-  const [counter,setCounter] = useState(data.length+1);
+  const [counter,setCounter] = useState(0);
   //a tracking variable to keep track of the current memo based on its unique id
-  const [tracking,setTracking] = useState(counter);
+  const [tracking,setTracking] = useState(0);
   //set a validation variable to catch errors and provide user feedback
   const [validation,setValidation] = useState("");
 
+  // a function to grab the initial data stored in the firestore database
+  
+  function getMemosDB(){
+    ref.onSnapshot((querySnapshot)=>{
+      const items=[];
+      querySnapshot.forEach((doc)=>{
+        console.log(doc.data);
+        items.push(doc.data());
+      })
+      setMemos(items);
+      setCounter(items[items.length-1].id +1);
+      setTracking(items[items.length-1].id +1);
+    })
+  }
+
+   //load the data once after mounting
+
+   useEffect(()=>{
+    getMemosDB();
+  },[]);
+
+  
+
 //a function to display relevant memo information(right panel) when memo item clicked(leftpanel)
   function handleMemoClick(id){
-    setTracking(id);
+    //setTracking(id);
     const item = memos.filter(memo=>memo.id==id);
     setTracking(item[0].id);
     setTitle(item[0].title);
-    setDetail(item[0].content);
+    setDetail(item[0].detail);
     document.getElementById("formDetails").value=detail;
     
   }
