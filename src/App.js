@@ -1,7 +1,7 @@
 import './App.css';
 import LeftPanel from "./components/structureComponents/LeftPanel.js"
 import RightPanel from "./components/structureComponents/RightPanel.js"
-import {data} from "./dataDummy.js";
+//import {data} from "./dataDummy.js";
 import {useState, useEffect} from "react";
 import firebase from "./firebase.js";
 
@@ -57,7 +57,8 @@ function App() {
 
 //a function to remove a memo from storage
   function handleDeleteClick(id) {
-    setMemos(memos.filter(memo => memo.id !== id));
+    //setMemos(memos.filter(memo => memo.id !== id));
+    ref.doc(String(id)).delete();
 }
 
 //update the stored title of the memo as it is typed
@@ -69,48 +70,55 @@ function handleDetailChange(e){
   setDetail(e.target.value);
 }
 
+async function setMemoByID(memoID,memoDataObject){
+  //example data for the first memo in the database
+  //ref.doc("0").set({title:"title of the first memo",id:0,detail:"details of the first memo"})
+  await ref.doc(memoID).set(memoDataObject);
+}
 
 function handleMemoSubmit(event){
   event.preventDefault();
   if(!title){
     setValidation("Please enter a Title");
-    
     return;
   }
   if(!detail){
     setValidation("Please enter some details");
-    
     return;
-
   }
 
   if(memos.length>=10){
     setValidation("limit of 10 memos for demonstrative purposes");
-    
     return;
+  }
+  // let modified = false;
+  // memos.forEach(memo=>{
+  //   if(memo.id==tracking){
+  //     memo.content=detail;
+  //     memo.title=title;
+  //     modified=true;
+  //   }
+  // })
+  // if(!modified){
+  //   setMemos([...memos,{id:counter,title:title,content:detail}]);
+  //   setCounter(counter+1);
+  // }
+  // setTitle("");
+  // setDetail("");
+  // setValidation("");
 
-  }
-  let modified = false;
-  memos.forEach(memo=>{
-    if(memo.id==tracking){
-      memo.content=detail;
-      memo.title=title;
-      modified=true;
-    }
+  setMemoByID(String(tracking),{title:title,id:tracking,detail:detail}).then(()=>
+  {
+    setTitle("");
+    setDetail("");
+    setValidation("");
   })
-  if(!modified){
-    setMemos([...memos,{id:counter,title:title,content:detail}]);
-    setCounter(counter+1);
-  }
-  setTitle("");
-  setDetail("");
-  setValidation("");
 }
 
 //a function to generate a clean memo for submission with a rudimentary unique id system
 function handleComposeClick(){
   setTracking(counter);
-  setCounter(tracking+1);
+  //setCounter(tracking+1);
   setTitle("");
   setDetail("");
   document.getElementById("formDetails").value=detail;
