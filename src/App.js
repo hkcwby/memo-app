@@ -1,7 +1,6 @@
 import './App.css';
 import LeftPanel from "./components/structureComponents/LeftPanel.js"
 import RightPanel from "./components/structureComponents/RightPanel.js"
-//import {data} from "./dataDummy.js";
 import {useState, useEffect} from "react";
 import firebase from "./firebase.js";
 
@@ -57,7 +56,6 @@ function App() {
 
 //a function to remove a memo from storage
   function handleDeleteClick(id) {
-    //setMemos(memos.filter(memo => memo.id !== id));
     ref.doc(String(id)).delete();
 }
 
@@ -91,21 +89,7 @@ function handleMemoSubmit(event){
     setValidation("limit of 10 memos for demonstrative purposes");
     return;
   }
-  // let modified = false;
-  // memos.forEach(memo=>{
-  //   if(memo.id==tracking){
-  //     memo.content=detail;
-  //     memo.title=title;
-  //     modified=true;
-  //   }
-  // })
-  // if(!modified){
-  //   setMemos([...memos,{id:counter,title:title,content:detail}]);
-  //   setCounter(counter+1);
-  // }
-  // setTitle("");
-  // setDetail("");
-  // setValidation("");
+  
 
   setMemoByID(String(tracking),{title:title,id:tracking,detail:detail}).then(()=>
   {
@@ -118,7 +102,6 @@ function handleMemoSubmit(event){
 //a function to generate a clean memo for submission with a rudimentary unique id system
 function handleComposeClick(){
   setTracking(counter);
-  //setCounter(tracking+1);
   setTitle("");
   setDetail("");
   document.getElementById("formDetails").value=detail;
