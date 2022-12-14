@@ -26,7 +26,6 @@ function App() {
     ref.onSnapshot((querySnapshot)=>{
       const items=[];
       querySnapshot.forEach((doc)=>{
-        console.log(doc.data);
         items.push(doc.data());
       })
       setMemos(items);
