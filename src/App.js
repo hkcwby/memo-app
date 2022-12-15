@@ -44,7 +44,6 @@ function App() {
 
 //a function to display relevant memo information(right panel) when memo item clicked(leftpanel)
   function handleMemoClick(id){
-    //setTracking(id);
     const item = memos.filter(memo=>memo.id==id);
     setTracking(item[0].id);
     setTitle(item[0].title);
