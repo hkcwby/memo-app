@@ -13,7 +13,7 @@ function App() {
   //useState variable for both the title and detail of our present memo shown on the right panel
   const [title,setTitle] = useState("");
   const [detail,setDetail] = useState("");
-  //a counter for creating new unique memo id
+  // a counter for creating new unique memo id
   const [counter,setCounter] = useState(0);
   //a tracking variable to keep track of the current memo based on its unique id
   const [tracking,setTracking] = useState(0);
@@ -44,17 +44,21 @@ function App() {
 
 //a function to display relevant memo information(right panel) when memo item clicked(leftpanel)
   function handleMemoClick(id){
+    //filters for the correct memo based upon its id and sets the data for the the relevant useStates
     const item = memos.filter(memo=>memo.id==id);
     setTracking(item[0].id);
     setTitle(item[0].title);
     setDetail(item[0].detail);
-    document.getElementById("formDetails").value=detail;
+    //document.getElementById("formDetails").value=detail;
     
   }
 
 //a function to remove a memo from storage
   function handleDeleteClick(id) {
     ref.doc(String(id)).delete();
+    setTracking(counter);
+    setTitle("");
+    setDetail("");
 }
 
 //update the stored title of the memo as it is typed
@@ -102,7 +106,7 @@ function handleComposeClick(){
   setTracking(counter);
   setTitle("");
   setDetail("");
-  document.getElementById("formDetails").value=detail;
+ // document.getElementById("formDetails").value=detail;
 }
 
   
